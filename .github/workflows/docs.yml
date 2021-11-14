@@ -3,7 +3,7 @@ name: docs
 on:
   push:
     branches:
-      - main
+      - master
     paths-ignore:
       - '**/__tests__/**'
   workflow_dispatch:
@@ -49,8 +49,8 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v2.2.0
         with:
-          repo: vuepress/vuepress.github.io
-          target_branch: main
+          repo: liubz/liubz.github.io
+          target_branch: master
           build_dir: docs/.vuepress/dist
         env:
           GH_PAT: ${{ secrets.GH_PAGES_TOKEN }}
