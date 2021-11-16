@@ -7,6 +7,10 @@ export const zh: NavbarConfig = [
     link: '/zh/guide/',
   },
   {
+    text: '前端',
+    link: '/web/',
+  },
+  {
     text: '参考',
     children: [
       {

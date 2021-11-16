@@ -1,6 +1,26 @@
 import type { SidebarConfig } from '@vuepress/theme-default'
-
+// children: ["", "mobile", "model", "console", "css", "JavaScript", "BOM", 'data-structure', 'HTTP', '前端工程化', 'webpack', 'vue', 'event-loop', 'performance', 'PWA', 'webpack']
 export const zh: SidebarConfig = {
+  '/web/': [
+    {
+      text: '指南',
+      children: [
+        '/web/README.md',
+        '/web/mobile.md',
+        '/web/console.md',
+        '/web/css.md',
+        '/web/JavaScript.md',
+        '/web/BOM.md',
+        '/web/dataStructure.md',
+        '/web/HTTP.md',
+        '/web/前端工程化.md',
+        '/web/eventLoop.md',
+        '/web/performance.md',
+        '/web/PWA.md',
+        '/web/webpack.md',
+      ],
+    },
+  ],
   '/zh/guide/': [
     {
       text: '指南',

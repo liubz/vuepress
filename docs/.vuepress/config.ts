@@ -53,15 +53,15 @@ export default defineUserConfig<DefaultThemeOptions>({
   // site-level locales config
   locales: {
     '/': {
-      lang: 'en-US',
-      title: 'VuePress',
-      description: 'Vue-powered Static Site Generator',
-    },
-    '/zh/': {
       lang: 'zh-CN',
       title: 'VuePress',
       description: 'Vue 驱动的静态网站生成器',
     },
+    // '/en/': {
+    //   lang: 'en-US',
+    //   title: 'VuePress',
+    //   description: 'Vue-powered Static Site Generator',
+    // }
   },
 
   bundler:
@@ -80,26 +80,9 @@ export default defineUserConfig<DefaultThemeOptions>({
     // theme-level locales config
     locales: {
       /**
-       * English locale config
-       *
-       * As the default locale of @vuepress/theme-default is English,
-       * we don't need to set all of the locale fields
-       */
-      '/': {
-        // navbar
-        navbar: navbar.en,
-
-        // sidebar
-        sidebar: sidebar.en,
-
-        // page meta
-        editLinkText: 'Edit this page on GitHub',
-      },
-
-      /**
        * Chinese locale config
        */
-      '/zh/': {
+       '/': {
         // navbar
         navbar: navbar.zh,
         selectLanguageName: '简体中文',
@@ -133,6 +116,22 @@ export default defineUserConfig<DefaultThemeOptions>({
         toggleDarkMode: '切换夜间模式',
         toggleSidebar: '切换侧边栏',
       },
+      /**
+       * English locale config
+       *
+       * As the default locale of @vuepress/theme-default is English,
+       * we don't need to set all of the locale fields
+       */
+      // '/en/': {
+      //   // navbar
+      //   navbar: navbar.en,
+
+      //   // sidebar
+      //   sidebar: sidebar.en,
+
+      //   // page meta
+      //   editLinkText: 'Edit this page on GitHub',
+      // }
     },
 
     themePlugins: {
@@ -187,7 +186,6 @@ export default defineUserConfig<DefaultThemeOptions>({
       isProd
         ? {
             theme: 'dark-plus',
-            Lang: ['CSS']
           }
         : false,
     ],
