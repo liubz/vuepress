@@ -53,4 +53,4 @@ jobs:
           target_branch: gh-pages
           build_dir: docs/.vuepress/dist
         env:
-          GH_PAT: ${{ secrets.pages }}
+          GH_PAT: ${{ secrets.ACCESS_TOKEN }}
