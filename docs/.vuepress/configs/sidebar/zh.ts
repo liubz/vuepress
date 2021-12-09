@@ -18,6 +18,7 @@ export const zh: SidebarConfig = {
         '/web/performance.md',
         '/web/PWA.md',
         '/web/webpack.md',
+        '/web/DesignPatterns.md',
       ],
     },
   ],
