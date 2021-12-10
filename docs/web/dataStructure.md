@@ -1,7 +1,5 @@
 # JavaScript 数据结构和算法
 
-# 数据结构
-
 ## 栈(stack)它是一种受限的线性表后进先出
 
 1.  栈是一种遵从后进先出（LIFO）原则的有序集合。新添加的或待删除的元素都保存在栈的
@@ -272,8 +270,6 @@ let linked = new LinkedList();
 典则是以[键，值]的形式来存储元素。字典也称作映射。
 
 # 排序算法
-
-<demo-1></demo-1>
 
 https://www.cnblogs.com/AlbertP/p/10847627.html
 
