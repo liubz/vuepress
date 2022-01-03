@@ -19,6 +19,7 @@ export const zh: SidebarConfig = {
         '/web/PWA.md',
         '/web/webpack.md',
         '/web/DesignPatterns.md',
+        '/web/Vue数据响应式原理.md',
       ],
     },
   ],
