@@ -24,7 +24,7 @@ arrMethods.forEach((method) => {
       // 把数组的身躯的__ob__取出来，__ob__已经被添加
       const ob = this.__ob__
       const inserted = []
-      switch (key) {
+      switch (method) {
         case 'push':
         case 'unshift':
           inserted = arguments
