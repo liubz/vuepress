@@ -1,6 +1,5 @@
 /* eslint-disable */
 import observe from './observe.js'
-import Wacther from './Watcher.js';
 import Dep from './Dep.js';
 export default function defineReactive(object, key, val) {
   const dep = new Dep()

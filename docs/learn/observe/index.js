@@ -10,8 +10,10 @@ let obj = {
   }
 }
 
-observe(obj)
-// new Watcher(obj, 'a.c', (val, oldVal) =>{
-//   console.log('监听', val, oldVal)
-// })
+const vm = observe(obj)
+new Watcher(obj, 'a.c', (val, oldVal) =>{
+  console.log('监听', val, oldVal)
+  console.log(vm)
+})
 obj.a.c = 2
+// obj.a.c = 3

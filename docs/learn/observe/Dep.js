@@ -14,9 +14,10 @@ export default class Dep {
   }
   // 添加依赖
   depend() {
+    // console.error('Dep.target', Dep.target)
     // Dep.target就是一个我们自己制定的全局的位置
     if (Dep.target) {
-      console.log('Dep.target', Dep.target)
+      console.error(Dep.target)
       this.addSub(Dep.target)
     }
   }
@@ -24,6 +25,7 @@ export default class Dep {
   notify() {
     // 浅克隆一份
     const subs = this.subs.slice()
+    console.log('notify', _.cloneDeep(subs))
     for (let i = 0; i < subs.length; i++) {
       subs[i].update()
     }

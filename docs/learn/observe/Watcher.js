@@ -12,7 +12,7 @@ export default class Wacther {
   }
 
   update() {
-    console.log('更新视图')
+    // console.log('更新视图')
     this.run()
   }
   get() {
@@ -21,8 +21,12 @@ export default class Wacther {
     let value;
     try {
       value = this.getter(obj);
+      console.error('get', value)
+      // console.error('obj', obj, value)
     } finally {
+      // debugger
       Dep.target = null;
+      console.error(Dep.target)
     }
     return value
   }
