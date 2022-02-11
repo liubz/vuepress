@@ -1,14 +1,14 @@
 /* eslint-disable */
-import { parsePath } from "./utils.js";
+import { parsePath } from './utils.js'
 import Dep from './Dep.js'
-var uid = 0;
+var uid = 0
 export default class Wacther {
   constructor(target, expression, callback) {
-    this.id = uid++;
-    this.target = target;
-    this.getter = parsePath(expression);
-    this.callback = callback;
-    this.value = this.get();
+    this.id = uid++
+    this.target = target
+    this.getter = parsePath(expression)
+    this.callback = callback
+    this.value = this.get()
   }
 
   update() {
@@ -16,9 +16,9 @@ export default class Wacther {
     this.run()
   }
   get() {
-    Dep.target = this;
-    const obj = this.target;
-    let value;
+    Dep.target = this
+    const obj = this.target
+    let value
     try {
       value = this.getter(obj);
       console.error('get', value)
@@ -35,7 +35,7 @@ export default class Wacther {
   }
   getAndInvoke(cb) {
     const value = this.get()
-    if (value !== this.value || typeof value === 'object' ) {
+    if (value !== this.value || typeof value === 'object') {
       const oldValue = this.value
       this.value = value
       cb.call(this.target, value, oldValue)

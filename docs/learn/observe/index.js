@@ -3,11 +3,11 @@ import observe from './observe.js'
 import Watcher from './Watcher.js'
 let obj = {
   a: {
-    c: 1
+    c: 1,
   },
   b: {
-    x: 2
-  }
+    x: 2,
+  },
 }
 
 const vm = observe(obj)
