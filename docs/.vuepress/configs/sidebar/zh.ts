@@ -21,6 +21,7 @@ export const zh: SidebarConfig = {
         '/web/webpack.md',
         '/web/DesignPatterns.md',
         '/web/Vue数据响应式原理.md',
+        '/web/包管理工具.md'
       ],
     },
   ],
