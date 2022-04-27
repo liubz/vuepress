@@ -3,7 +3,7 @@ import type { SidebarConfig } from '@vuepress/theme-default'
 export const zh: SidebarConfig = {
   '/web/': [
     {
-      text: '指南',
+      text: '前端',
       children: [
         '/web/README.md',
         '/web/mobile.md',
@@ -14,6 +14,7 @@ export const zh: SidebarConfig = {
         '/web/dataStructure.md',
         '/web/HTTP.md',
         '/web/前端工程化.md',
+        '/web/包管理工具.md',
         '/web/eventLoop.md',
         '/web/performance.md',
         '/web/PWA.md',
