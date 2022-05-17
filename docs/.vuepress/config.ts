@@ -2,6 +2,7 @@ import { defineUserConfig } from '@vuepress/cli'
 import type { DefaultThemeOptions } from '@vuepress/theme-default'
 import { path } from '@vuepress/utils'
 import { navbar, sidebar } from './configs'
+// import { copyrightPlugin } from 'vuepress-plugin-copyright2'
 
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -82,7 +83,7 @@ export default defineUserConfig<DefaultThemeOptions>({
       /**
        * Chinese locale config
        */
-       '/': {
+      '/': {
         // navbar
         navbar: navbar.zh,
         selectLanguageName: '简体中文',
@@ -188,6 +189,14 @@ export default defineUserConfig<DefaultThemeOptions>({
             theme: 'dark-plus',
           }
         : false,
+    ],
+    [
+      'vuepress-plugin-clipboard',
+      {
+        // options...
+        staticIcon: true,
+        align: 'top',
+      },
     ],
   ],
 })

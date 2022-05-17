@@ -10528,6 +10528,16 @@ vue@^3.2.20:
     "@vue/server-renderer" "3.2.20"
     "@vue/shared" "3.2.20"
 
+vuepress-plugin-clipboard@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.npmmirror.com/vuepress-plugin-clipboard/-/vuepress-plugin-clipboard-1.0.8.tgz#725c30208c52f097a309b386d96e7c0a141460ad"
+  integrity sha512-npzJpmIoU73iwuihVCYq82my9opkphp4MQR30lEDQ9upBVjbkFLetMYx/DApTX+y7SKVV+jufS33shzoGBn7Xw==
+
+vuepress-plugin-code-copy@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.npmmirror.com/vuepress-plugin-code-copy/-/vuepress-plugin-code-copy-1.0.6.tgz#6431dab764b48b5b203e4936d98b1943651ce4ad"
+  integrity sha512-FiqwMtlb4rEsOI56O6sSkekcd3SlESxbkR2IaTIQxsMOMoalKfW5R9WlR1Pjm10v6jmU661Ex8MR11k9IzrNUg==
+
 w3c-hr-time@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/w3c-hr-time/-/w3c-hr-time-1.0.2.tgz#0a89cdf5cc15822df9c360543676963e0cc308cd"
