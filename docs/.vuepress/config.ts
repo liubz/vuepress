@@ -191,6 +191,12 @@ export default defineUserConfig<DefaultThemeOptions>({
         : false,
     ],
     [
+      '@vuepress/plugin-pwa',
+      {
+        skipWaiting: true,
+      },
+    ],
+    [
       'vuepress-plugin-clipboard',
       {
         // options...
