@@ -58,8 +58,19 @@ perf: 优化性能
 test: 测试用例修改
 chore: 对构建过程或辅助工具和库的更改，例如文档生成
 
-作者：不要秃头啊
-链接：https://juejin.cn/post/7085257325165936648
-来源：稀土掘金
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+'feat',
+'fix',
+'perf',
+'style',
+'docs',
+'test',
+'refactor',
+'build',
+'ci',
+'chore',
+'revert',
+'wip',
+'workflow',
+'types',
+'release',
 ```
