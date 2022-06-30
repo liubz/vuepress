@@ -23,6 +23,7 @@ export const zh: SidebarConfig = {
         '/web/包管理工具.md',
         '/web/git.md',
         '/web/Electron.md',
+        '/web/Electron性能优化.md',
       ],
     },
   ],
