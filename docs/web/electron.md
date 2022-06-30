@@ -1,6 +1,6 @@
 # Electron 开发总结
 
-### 渲染进程通信
+### Electron进程通信
 
 1.  ipcRenderer.sendTo()
 
@@ -9,10 +9,25 @@
 ipcRenderer.sendTo(webContentsId, channel, ...args)
 ```
 
+
 2. 使用全局共享属性
 
 3. 利用主进程中转
 
+4. ipcRenderer.invoke、ipcMain.handle
+
+```js
+// 主进程
+ipcMain.handle('test', async(event,args) => {
+    let result = await somePromise();
+    return result;
+});
+// 渲染进程
+ipcRenderer.invoke('test', data).then(result => {
+    console.log(result);
+    return result;
+});
+```
 ### webview 注入 js，开启 contextIsolation js 采用 file://协议
 
 ```html
