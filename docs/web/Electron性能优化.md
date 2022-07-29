@@ -18,3 +18,24 @@
 6. 调试工具
   - yarn add devtron --dev
   - require('devtron').install()
+6. 大量计算开启或者大文件下载上可以采用开启webwork线程
+7. 优化窗口启动（如预览图片、播放视频）预先创建一个通用窗口，通过路由跳转加载页面，达到秒开。
+8. 禁用Electron 功能可大幅度提升性能
+```js
+import { app } from 'electron'
+
+export function commandLine() {
+  const commandLineParams = ['no-sandbox', 'disable-gpu', 'disable-software-rasterizer', 'disable-gpu-compositing', 'disable-gpu-rasterization',  'disable-gpu-sandbox', '--no-sandbox', 'disable-features', 'disable-password-generation', 'process-per-site', 'disable-crash-handler', 'disable-breakpad', 'disable-glsl-translator', 'disable-java', 'disable-speech-api', 'disable-voice-input', 'disable-sync', 'disable-app-window-cycling', 'disable-client-side-phishing-detection', 'disable-cloud-import', 'disable-datasaver-prompt', 'disable-demo-mode', 'disable-device-discovery-notifications', 'disable-logging', 'disable-network-portal-notification', 'ignore-certificate-errors', 'in-process-gpu'];
+  for (let i=0; i<commandLineParams.length; i++) {
+    if (commandLineParams[i] === 'disable-features') {
+      app.commandLine.appendSwitch(commandLineParams[i], 'electron')
+    } else if (commandLineParams[i] === 'disable-features') {
+      app.commandLine.appendSwitch(commandLineParams[i], 'true')
+    } else {
+      app.commandLine.appendSwitch(commandLineParams[i])
+    }
+  }
+  app.disableHardwareAcceleration()
+}
+```
+9. 使用requestIdleCallback开启任务优先级队列 
