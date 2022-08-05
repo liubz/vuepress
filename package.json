@@ -28,6 +28,9 @@
     "package.json": "sort-package-json"
   },
   "prettier": "prettier-config-vuepress",
+  "dependencies": {
+    "three": "^0.143.0"
+  },
   "devDependencies": {
     "@commitlint/cli": "^13.2.1",
     "@commitlint/config-conventional": "^13.2.0",
