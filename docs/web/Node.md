@@ -13,3 +13,5 @@
 
 1. 同步、异步读取文件
   @[code](../code/node/读取文件.js)
+
+<Three></Three>
