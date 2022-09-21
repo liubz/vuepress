@@ -29,6 +29,8 @@
   },
   "prettier": "prettier-config-vuepress",
   "dependencies": {
+    "phaser": "^3.55.2",
+    "pixi.js": "^6.5.2",
     "three": "^0.143.0"
   },
   "devDependencies": {
