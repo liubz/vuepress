@@ -29,6 +29,7 @@
   },
   "prettier": "prettier-config-vuepress",
   "dependencies": {
+    "lodash-es": "^4.17.21",
     "phaser": "^3.55.2",
     "pixi.js": "^6.5.2",
     "three": "^0.143.0"
