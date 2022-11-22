@@ -95,3 +95,64 @@ window.addEventListener('DOMContentLoaded', () => {
   // }
 })
 ```
+
+
+### electron 进程挂起或者奔溃
+ - process.crash() // 让进程奔溃
+ - process.hang() // 让进程挂起
+
+1. 进程奔溃
+
+```js
+// 进程奔溃捕获
+app.on('render-process-gone', async (event, webContents, details) => {
+    if (details) {
+        log.info('render-process-gone进程崩溃或被杀死', details.reason)
+        winLog.writeInfo('render-process-gone进程崩溃或被杀死', details.reason)
+        // 捕获渲染进程崩溃
+        if(details.reason === "crashed") {
+            const win = Array.from(windowPool.activeWindows).find(win => win.id === webContents.id)
+            // 主窗体重新加载页面
+            console.log('窗口id', webContents.id)
+            if (win.name === 'web_main') {
+                win.close()
+                const res = await dialog.showMessageBox(win, {
+                    type: 'error',
+                    title: '进程崩溃了',
+                    message: '这个进程已经崩溃.',
+                    buttons: ['重新加载', '退出'],
+                })
+                if(res.response === 0) {
+                    // webContents.id === windowPool.mainWindow.id
+                    // webContents.reload()
+                    app.relaunch();
+                    app.exit(0);
+                } else {
+                    app.exit(0);
+                }
+            } else  {
+                win.close()
+            }
+
+        }
+    } else {
+        log.info('render-process-gone details进程崩溃或被杀死', details)
+        winLog.writeInfo('render-process-gone details进程崩溃或被杀死', details)
+    }
+})
+```
+1. 进程挂起
+```js
+win.on('unresponsive', function () {
+    const options = {
+      type: 'info',
+      title: '渲染器进程挂起',
+      message: '这个进程已经被挂起.',
+      buttons: ['重载', '关闭']
+    }
+    dialog.showMessageBox(options, function (index) {
+      if (index === 0) win.reload()
+      else win.close()
+    })
+  })
+```

@@ -21,6 +21,7 @@
 6. 大量计算开启或者大文件下载上可以采用开启webwork线程
 7. 优化窗口启动（如预览图片、播放视频）预先创建一个通用窗口，通过路由跳转加载页面，达到秒开。
 8. 禁用Electron 功能可大幅度提升性能
+9. requestIdleCallback
 ```js
 import { app } from 'electron'
 
