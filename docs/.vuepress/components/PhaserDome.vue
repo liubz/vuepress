@@ -2,7 +2,6 @@
 import type { Types } from 'phaser'
 import Phaser, { Core, Scene, WEBGL } from 'phaser'
 import { computed, defineProps, onMounted, ref } from 'vue'
-import {} from 'lodash-es'
 const dom = ref<HTMLDivElement | null>(null)
 let game: Phaser.Game
 const a = ref<string>('123')
@@ -25,8 +24,8 @@ var config: Types.Core.GameConfig = {
     },
   },
   scene: {
-    preload: preload,
-    create: create,
+    preload,
+    create,
   },
 }
 
