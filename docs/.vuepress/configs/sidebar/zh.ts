@@ -15,7 +15,7 @@ export const zh: SidebarConfig = {
         '/web/HTTP.md',
         '/web/前端工程化.md',
         '/web/eventLoop.md',
-        '/web/performance.md',
+        '/web/前端优化.md',
         '/web/PWA.md',
         '/web/webpack.md',
         '/web/DesignPatterns.md',
