@@ -156,3 +156,181 @@ win.on('unresponsive', function () {
     })
   })
 ```
+
+
+### electron-builder 配置
+electron-builder.yml
+```yml
+{
+  "appId": "YourAppID",
+  "asar": true, // 是否开启asar
+  "asarUnpack": ["node_modules/ffmpeg-static/bin/${os}/${arch}/ffmpeg"] // 不用打包成asar的文件
+  "icon": "public/favicon.ico",
+  "directories": {
+    "output": "release/${version}"
+  },
+  "files": [
+    "dist-electron",
+    "dist"
+  ],
+  "mac": {
+    "artifactName": "${productName}_${version}.${ext}",
+    "target": [
+      "dmg"
+    ]
+  },
+  "win": {
+    "target": [
+      {
+        "target": "nsis",
+        "arch": [
+          "x64"
+        ]
+      }
+    ],
+    "artifactName": "${productName}_${version}.${ext}"
+  },
+  "nsis": {
+    "oneClick": false,
+    "perMachine": false,
+    "allowToChangeInstallationDirectory": true,
+    "deleteAppDataOnUninstall": false
+  }
+}
+
+```
+
+### electron 视频编解码问题
+ 
+1. 采用FFmpeg 推流
+```js
+const path = require("path");
+const mp4 = path.join(__dirname, "./test.mp4");
+const http = require('http')
+const ffmpeg = require("fluent-ffmpeg");
+const { on } = require("events");
+ffmpeg.setFfmpegPath(path.join(__dirname, "./src/libs/ffmpeg/bin/ffmpeg.exe"));
+ffmpeg.setFfprobePath(path.join(__dirname, "./src/libs/ffmpeg/bin/ffprobe.exe"));
+
+const url = '/8ce8fec4a2f9775178ec2f55320006ac.mp4'
+const url1 = "/e06f40fe86213da8d53a9a34fb5b1b0d.mp4"
+const bigurl = './big.mp4'
+// 查看视频信息，判断浏览器是否支持
+ffmpeg.ffprobe(url1, (err, data) => {
+  console.log(data)
+})
+// 启动node媒体服务
+const NodeMediaServer = require('node-media-server');
+ 
+const config = {
+  rtmp: {
+    port: 1935,
+    chunk_size: 60000,
+    gop_cache: true,
+    ping: 60,
+    ping_timeout: 30
+  },
+  http: {
+    port: 8000,
+    allow_origin: '*'
+  }
+};
+// rtmp://localhost:1935/live/STREAM_NAME
+var nms = new NodeMediaServer(config)
+nms.run();
+
+// 向媒体服务推流
+ffmpeg({
+  source: url1,
+  preset: 'superfast'
+  // preset: 'fast'
+})
+.seekInput(0) // 设置视频开始播放的时间 可以通过点击进度条控制播放的进度
+.on('end', () => {
+  console.log('结束')
+  // console.timeEnd("transcoding");
+}).format('flv').output('rtmp://localhost:1935/live/STREAM_NAME', {
+  end: true
+})
+// .size('50%')
+// Intel QSV进行H.264转码
+.outputOptions([  '-pix_fmt nv12', `-c:v h264_qsv`, '-threads 2', '-bufsize 50k', '-an', '-y'])
+
+.run() 
+```
+2. 采用文件流的形式，启动一个http服务解析视频
+'-threads', '2' 开启两个线程CUP约占用50%
+```js
+const path = require("path");
+const mp4 = path.join(__dirname, "./test.mp4");
+const http = require('http')
+const ffmpeg = require("fluent-ffmpeg");
+const { on } = require("events");
+ffmpeg.setFfmpegPath(path.join(__dirname, "./src/libs/ffmpeg/bin/ffmpeg.exe"));
+ffmpeg.setFfprobePath(path.join(__dirname, "./src/libs/ffmpeg/bin/ffprobe.exe"));
+
+const url = '/8ce8fec4a2f9775178ec2f55320006ac.mp4'
+const url1 = "/e06f40fe86213da8d53a9a34fb5b1b0d.mp4"
+const bigurl = './big.mp4'
+// 查看视频信息，判断浏览器是否支持
+ffmpeg.ffprobe(url1, (err, data) => {
+  console.log(data)
+})
+function getParam(url, key) {
+  var param = new Object();
+  var item = new Array();
+  var urlList = url.split("?");
+  var req;
+  if (urlList.length == 1) {
+      req = urlList[0];
+  } else {
+      req = urlList[1];
+  }
+  var list = req.split('&');
+  for (var i = 0; i < list.length; i++) {
+      item = list[i].split('=');
+      param[item[0]] = item[1];
+  }
+  return param[key] ? param[key] : null;
+}
+
+// 流解决方案
+let _ffmpegCommand
+function killFfmpegCommand() {
+  if (_ffmpegCommand) {
+    _ffmpegCommand.kill()
+  }
+}
+let _videoServer = http.createServer((request, response) => {
+  console.log("on request", request.url);
+  var startTime = parseInt(getParam(request.url, "startTime"));
+
+  // this.killFfmpegCommand();
+   _ffmpegCommand = ffmpeg({
+      source: url1,
+      preset: 'ultrafast'
+    })
+      // .nativeFramerate()
+      // .videoCodec('libx264')
+      // .audioCodec('aac')
+      .format('mp4')
+      .size('30%')
+      .seekInput(startTime)
+      // .outputOptions([  '-pix_fmt nv12', `-c:v h264_qsv`, '-threads 2', '-bufsize 50k', '-an', '-y'])
+      .outputOptions(
+          '-movflags', 'frag_keyframe+empty_moov+faststart',
+          '-g', '18', '-threads', '2')
+      .on('progress', function (progress) {
+          console.log('time: ' + progress.timemark);
+      })
+      .on('error', function (err) {
+          console.log('An error occurred: ' + err.message);
+      })
+      .on('end', function () {
+          console.log('Processing finished !');
+      })
+  let videoStream = _ffmpegCommand.pipe();
+  videoStream.pipe(response);
+}).listen(8888);
+
+```
