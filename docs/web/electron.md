@@ -334,3 +334,13 @@ let _videoServer = http.createServer((request, response) => {
 }).listen(8888);
 
 ```
+
+
+### electron 奔溃日志
+
+奔溃分析工具
+1. electron-minidump
+```js
+// 获取奔溃日志路径
+app.getPath('crashDumps')
+```
