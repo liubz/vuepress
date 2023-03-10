@@ -344,3 +344,24 @@ let _videoServer = http.createServer((request, response) => {
 // 获取奔溃日志路径
 app.getPath('crashDumps')
 ```
+
+
+## 自定义协议
+
+```js
+import { app, BrowserWindow, shell, ipcMain, crashReporter, protocol } from 'electron'
+// 一定要加上 supportFetchAPI
+protocol.registerSchemesAsPrivileged([
+  { scheme: "app", privileges: { secure: true, standard: true, supportFetchAPI: true,  corsEnabled: true } },
+]);
+// 在whenReady注册协议
+app.whenReady().then(() =>{
+  const res = protocol.registerBufferProtocol('app', (request,callback ) => {
+    console.log('出发')
+    const json = {a: 2}
+    callback({mimeType: 'application/json', data: new Buffer(JSON.stringify(json), 'utf-8')})
+  })
+  console.log('registerBufferProtocol', res)
+  createWindow()
+})
+```
