@@ -40,3 +40,8 @@ export function commandLine() {
 }
 ```
 9. 使用requestIdleCallback开启任务优先级队列 
+
+## 优化实践
+
+- 减少第三方模块的加载，提示图片预览子窗体加载速度
+- allowRendererProcessReuse true

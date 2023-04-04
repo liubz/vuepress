@@ -16,6 +16,7 @@
   - [闭包](#闭包)
   - [可选链操作符（?.）](#可选链操作符)
   - [空值合并运算符（??）](#空值合并运算符)
+  - [字符串解析为DOM节点](#字符串解析为dom节点)
 
 
 ## 堆(heap)与栈(stack)
@@ -221,4 +222,10 @@ console.log(false ?? 'default string') // false
 console.log(true ?? 'default string')  // true
 console.log('' ?? 'default string')    // ''
 console.log('哈哈' ?? 'default string')    // '哈哈'
+```
+
+## 字符串解析为DOM节点
+```js
+const parser = new DOMParser();
+const dockHtml = parser.parseFromString(html, 'text/html')
 ```
