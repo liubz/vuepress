@@ -84,3 +84,8 @@ function reverse(x: number | string): number | string | void {
     }
 }
 ```
+### extends 关键字
+
+```ts
+type num = 1 extends number ? 1 : 0;
+```
