@@ -11,6 +11,10 @@ export const zh: NavbarConfig = [
     link: '/web/',
   },
   {
+    text: 'Electron',
+    link: '/electron/',
+  },
+  {
     text: '参考',
     children: [
       {

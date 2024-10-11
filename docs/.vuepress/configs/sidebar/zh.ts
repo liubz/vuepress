@@ -30,6 +30,12 @@ export const zh: SidebarConfig = {
       ],
     },
   ],
+  '/electron/': [
+    {
+      text: 'Electron',
+      children: ['/electron/README.md', '/electron/Electron读取多文件.md'],
+    },
+  ],
   '/zh/guide/': [
     {
       text: '指南',
