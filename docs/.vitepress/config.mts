@@ -12,7 +12,8 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Examples', link: '/markdown-examples' },
-      { text: 'library', link: '/library' }
+      { text: 'library', link: '/library' },
+      { text: 'Electron', link: '/electron/README.md' },
     ],
 
     sidebar: [
@@ -23,12 +24,13 @@ export default defineConfig({
       //     { text: 'Runtime API Examples', link: '/api-examples' }
       //   ]
       // }, 
-      // {
-      //   text: 'library',
-      //   items: [
-      //     { text: 'library', link: '/library' }
-      //   ]
-      // }
+      {
+        text: 'Electron',
+        items: [
+          { text: 'Electron读取多文件', link: '/electron/Electron读取多文件' },
+          { text: 'electron性能优化', link: '/electron/electron性能优化' },
+        ]
+      }
     ],
 
     socialLinks: [

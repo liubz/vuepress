@@ -1,3 +1,0 @@
-# Phaser
-
-<PhaserDome></PhaserDome>

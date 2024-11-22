@@ -4,9 +4,9 @@
 - [链接：](https://juejin.im/post/5c64d15d6fb9a049d37f9c20)
 - 来源：掘金
 
-
 ## 实现跨页面通讯
- CSS 伪类（例如：:hover）
+
+CSS 伪类（例如：:hover）
 查询某些属性或调用某些方法
 
 clientWidth、clientHeight、clientTop、clientLeft
@@ -15,8 +15,6 @@ scrollWidth、scrollHeight、scrollTop、scrollLeft
 getComputedStyle()
 getBoundingClientRect()
 scrollTo()
-
-
 
 - postMessage
   1. postMessage(data,origin)方法接受两个参数
@@ -27,8 +25,7 @@ scrollTo()
 
 ```js
 
-postMessage(data,origin)方法接受两个参数
-demo
+postMessage(data,origin) 方法接受两个参数
 
 a.html
 <iframe id="iframe" src="http://www.domain2.com/b.html" style="display:none;"></iframe>
@@ -65,11 +62,12 @@ b.html  与a.html不同源
     }, false);
 </script>
 
-
 ```
 
 ## 从输入URL到页面加载发生了什么
+
 相关文章：[ 前端经典面试题: 从输入URL到页面加载发生了什么](https://www.jianshu.com/p/e06e86ef2595)
+
 1. DNS解析
 
 2. TCP连接
@@ -79,6 +77,7 @@ b.html  与a.html不同源
 4. 服务器处理请求并返回HTTP报文
 
 5. 浏览器解析渲染页面
+
 - HTML parser --> DOM Tree
   - 标记化算法，进行元素状态的标记
   - dom 树构建
@@ -91,9 +90,9 @@ b.html  与a.html不同源
 
 6. 连接结束
 
-##  重绘与回流
+## 重绘与回流
 
- 当元素的样式发生变化时，浏览器需要触发更新，重新绘制元素。这个过程中，有两种类型的操作，即重绘与回流。
+当元素的样式发生变化时，浏览器需要触发更新，重新绘制元素。这个过程中，有两种类型的操作，即重绘与回流。
 
 ### 重绘(repaint): 当元素样式的改变不影响布局时，浏览器将使用重绘对元素进行更新，此时由于只需要UI层面的重新像素绘制，因此 损耗较少
 
@@ -113,4 +112,4 @@ b.html  与a.html不同源
   - getBoundingClientRect()
   - scrollTo()
 
-**回流必定触发重绘，重绘不一定触发回流。重绘的开销较小，回流的代价较高
+\*\*回流必定触发重绘，重绘不一定触发回流。重绘的开销较小，回流的代价较高
