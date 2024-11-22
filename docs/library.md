@@ -8,6 +8,7 @@
 
 ## 拖拽库
 
+- [pragmatic-drag-and-drop](https://github.com/atlassian/pragmatic-drag-and-drop)
 - [vue-draggable-plus](https://vue-draggable-plus.pages.dev/) - Vue3的拖拽排序库
 - [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd) - React 漂亮的拖拽库
 - [Sortable](https://github.com/SortableJS/Sortable) - 功能强大的JavaScript拖拽库

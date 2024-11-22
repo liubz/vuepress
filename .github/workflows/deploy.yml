@@ -3,7 +3,7 @@ name: docs
 on:
   push:
     branches:
-      - master
+      - main
     paths-ignore:
       - '**/__tests__/**'
   workflow_dispatch:
@@ -14,7 +14,7 @@ jobs:
 
     env:
       DOCS_GA_ID: G-CTB8FQ7VMW
-      NODE_VERSION: '14'
+      NODE_VERSION: '18'
 
     steps:
       - uses: actions/checkout@v2
@@ -44,7 +44,7 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Build documentation site
-        run: yarn docs:release
+        run: yarn docs:build
 
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v2.2.0
