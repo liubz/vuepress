@@ -1,9 +1,5 @@
 # 移动端常见问题
 
-::: tip 提示
-主题组件同样受到[浏览器 API 访问限制](./using-vue.md#浏览器-api-访问限制)。
-:::
-
 ## CSS 相关
 
 ### 禁止用户选择页面中的文字或者图片
@@ -49,10 +45,7 @@ input::-webkit-inner-spin-button {
 
 ```html
 <!-- 设置缩放 -->
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui"
-/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
 <!-- 可隐藏地址栏，仅针对IOS的Safari（注：IOS7.0版本以后，safari上已看不到效果） -->
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <!-- 仅针对IOS的Safari顶端状态条的样式（可选default/black/black-translucent ） -->
@@ -111,7 +104,7 @@ img {
 ### IOS 移动端上传图片
 
 ```js
-www;
+www
 ```
 
 ## vue 相关
