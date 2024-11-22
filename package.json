@@ -1,65 +1,26 @@
 {
-  "private": true,
-  "workspaces": [
-    "packages/vuepress",
-    "packages/vuepress-vite",
-    "packages/@vuepress/*"
-  ],
+  "name": "vitePress",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "main": "index.js",
   "scripts": {
-    "build": "tsc --build",
-    "clean": "lerna run clean --stream",
-    "copy": "lerna run copy --stream",
-    "copy-watch": "lerna run copy --parallel -- --watch",
-    "dev": "yarn copy-watch & yarn build --watch",
-    "docs:build": "vuepress build docs --clean-cache",
-    "docs:clean": "rimraf docs/.vuepress/.temp docs/.vuepress/.cache docs/.vuepress/dist",
-    "docs:dev": "vuepress dev docs --clean-cache",
-    "docs:release": "yarn copy && yarn build && yarn docs:build",
-    "docs:serve": "anywhere -h localhost -d docs/.vuepress/dist",
-    "lint": "eslint --ext .js,.ts,.vue .",
-    "prepare": "husky install",
-    "release": "yarn lint && yarn clean && yarn copy && yarn build && yarn test && lerna publish prerelease --dist-tag next",
-    "test": "jest --runInBand",
-    "test:coverage": "yarn copy && yarn build && yarn test --coverage"
-  },
-  "lint-staged": {
-    "*.{js,ts,vue}": "eslint --fix",
-    "*.{json,yml,css,scss}": "prettier --write",
-    "package.json": "sort-package-json"
-  },
-  "prettier": "prettier-config-vuepress",
-  "dependencies": {
-    "lodash-es": "^4.17.21",
-    "phaser": "^3.55.2",
-    "pixi.js": "^6.5.2",
-    "three": "^0.143.0"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
-    "@commitlint/cli": "^13.2.1",
-    "@commitlint/config-conventional": "^13.2.0",
-    "@types/jest": "^27.0.2",
-    "anywhere": "^1.5.0",
-    "cpx2": "^3.0.2",
-    "cross-env": "^7.0.3",
-    "eslint": "^7.32.0",
-    "eslint-config-vuepress": "^3.4.0",
-    "eslint-config-vuepress-typescript": "^2.4.0",
-    "husky": "^7.0.4",
-    "jest": "^27.3.1",
-    "jest-serializer-vue": "^2.0.2",
-    "lerna": "^4.0.0",
-    "lint-staged": "^11.2.6",
-    "prettier": "2.2.1",
-    "prettier-config-vuepress": "^1.2.0",
-    "rimraf": "^3.0.2",
-    "sort-package-json": "^1.52.0",
-    "ts-jest": "^27.0.7",
-    "typescript": "^4.4.4",
-    "vuepress-plugin-clipboard": "^1.0.8",
-    "vuepress-plugin-code-copy": "^1.0.6"
-  },
-  "volta": {
-    "node": "18.13.0",
-    "yarn": "1.22.19"
+    "@antfu/eslint-config": "^3.9.2",
+    "@unocss/eslint-plugin": "^0.64.1",
+    "eslint": "^9.15.0",
+    "eslint-plugin-format": "^0.1.2",
+    "install": "^0.13.0",
+    "pnpm": "^9.14.2",
+    "vitepress": "^1.5.0"
   }
 }
