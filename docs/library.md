@@ -49,3 +49,8 @@
 ## JavaScript
 
 - [countUp.js](https://github.com/inorganik/countUp.js) - 数字滚动
+
+## 动画库
+
+- [anime.js](https://animejs.com/) - 动画库
+- [motion](https://motion.dev/) - 动画库
