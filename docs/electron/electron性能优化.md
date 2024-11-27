@@ -51,3 +51,4 @@ export function commandLine() {
 
 - 减少第三方模块的加载，提示图片预览子窗体加载速度
 - allowRendererProcessReuse true
+- 避免日志过度写入，非重要日志可以采用异步写入，或行开线程写入
