@@ -23,32 +23,35 @@
 
 6. 大量计算开启或者大文件下载上可以采用开启webwork线程
 7. 优化窗口启动（如预览图片、播放视频）预先创建一个通用窗口，通过路由跳转加载页面，达到秒开。
-8. 禁用Electron 功能可大幅度提升性能
 
-```js
-import { app } from 'electron'
-
-export function commandLine() {
-  const commandLineParams = ['no-sandbox', 'disable-gpu', 'disable-software-rasterizer', 'disable-gpu-compositing', 'disable-gpu-rasterization', 'disable-gpu-sandbox', '--no-sandbox', 'disable-features', 'disable-password-generation', 'process-per-site', 'disable-crash-handler', 'disable-breakpad', 'disable-glsl-translator', 'disable-java', 'disable-speech-api', 'disable-voice-input', 'disable-sync', 'disable-app-window-cycling', 'disable-client-side-phishing-detection', 'disable-cloud-import', 'disable-datasaver-prompt', 'disable-demo-mode', 'disable-device-discovery-notifications', 'disable-logging', 'disable-network-portal-notification', 'ignore-certificate-errors', 'in-process-gpu']
-  for (let i = 0; i < commandLineParams.length; i++) {
-    if (commandLineParams[i] === 'disable-features') {
-      app.commandLine.appendSwitch(commandLineParams[i], 'electron')
-    }
-    else if (commandLineParams[i] === 'disable-features') {
-      app.commandLine.appendSwitch(commandLineParams[i], 'true')
-    }
-    else {
-      app.commandLine.appendSwitch(commandLineParams[i])
-    }
-  }
-  app.disableHardwareAcceleration()
-}
-```
-
-9. 使用requestIdleCallback开启任务优先级队列
+8. 使用requestIdleCallback开启任务优先级队列
 
 ## 优化实践
 
 - 减少第三方模块的加载，提示图片预览子窗体加载速度
 - allowRendererProcessReuse true
 - 避免日志过度写入，非重要日志可以采用异步写入，或行开线程写入
+
+## 禁用多线程
+
+(来自)：https://juejin.cn/post/7032524093183000589#heading-24
+
+- 优点：
+  - 减少内存占用
+  - 减少CPU占用
+- 缺点：
+  - 禁用多线程后，Electron 应用程序将无法使用多线程来加速某些操作，例如网络请求和文件 I/O。这可能会导致应用程序的响应速度变慢。
+  - 由于安全性和稳定性问题，Chromium 和 Electron 的开发者通常不建议使用这种模式。
+  - 这种模式可能会增加应用崩溃的风险，因为一个页面的崩溃可能会导致整个应用程序崩溃。
+
+```js
+const { app } = require('electron')
+
+app.commandLine.appendSwitch('single-process')
+```
+
+## 启用v8缓存
+
+```js
+app.commandLine.appendSwitch('js-flags', '--use-code-cache')
+```
