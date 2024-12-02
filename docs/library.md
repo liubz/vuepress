@@ -54,3 +54,7 @@
 
 - [anime.js](https://animejs.com/) - 动画库
 - [motion](https://motion.dev/) - 动画库
+
+# 密码强度检测
+
+-[@zxcvbn-ts/core](https://www.npmjs.com/package/@zxcvbn-ts/core)
