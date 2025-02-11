@@ -23,7 +23,9 @@
     "eslint": "^9.15.0",
     "eslint-plugin-format": "^0.1.2",
     "install": "^0.13.0",
-    "pnpm": "^9.14.2",
     "vitepress": "^1.5.0"
+  },
+  "volta": {
+    "node": "22.12.0"
   }
 }
